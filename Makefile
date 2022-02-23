@@ -6,14 +6,14 @@
 #    By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:51:20 by ecruz-go          #+#    #+#              #
-#    Updated: 2022/02/17 12:01:33 by ecruz-go         ###   ########.fr        #
+#    Updated: 2022/02/23 18:11:24 by ecruz-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= so_long
 PROG	= so_long
 
-SRCS 	= so_long.c events.c
+SRCS 	= so_long.c events.c map.c messages.c
 SRCS_F 	= sources/
 OBJS 	= ${SRCS:.c=.o}
 OBJS_F	= _objFiles/
@@ -52,7 +52,7 @@ $(NAME):
 					@echo $(CURSIVE)$(GRAY) "	- Compiling Libft..." $(NONE)
 					@make -C $(LIBF_DIR)
 					@echo $(CURSIVE)$(GRAY) "	- Compiling $(NAME)..." $(NONE)
-					@$(CC) $(CFLAGS) $(addprefix $(OBJS_F), $(OBJS)) $(MINILIBX) -o $(NAME)
+					@$(CC) $(CFLAGS) $(addprefix $(OBJS_F), $(OBJS)) $(LIBFT) $(MINILIBX) -o $(NAME)
 					@echo $(GREEN)"	- so_long Compiled -"$(NONE)
 
 clean:
