@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:13:13 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/02/23 18:17:14 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/04 14:19:06 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,27 @@ typedef struct	s_game {
 	void		*win;
 	t_vector	win_size;
 }	t_game;
+/* Struct for checking the map */
+typedef struct s_mapcheck
+{
+	t_vector	size;
+	t_vector	point;
+	int			player;
+	int			exit;
+	int			collectable;
+}				t_mapcheck;
 
 // Control de las teclas
 int	key_press(int keycode, t_game *vars);
 int	close_program(t_game *vars);
 
-// Gestion del mapa
+// Map Management
 t_tile	**map_init(int argc, char **argv);
-char	*get_file(int fd, int size, int len)
+static char	**alloc_columns(char *file);
+static t_mapcheck	mapcheck(char **map);
+static int	checks(char **map, t_mapcheck *data);
 // MESSAGES
 void	print_warning(char *message);
 int		print_error(char *message);
+void	*null_error(char *message);
 #endif

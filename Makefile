@@ -6,20 +6,24 @@
 #    By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:51:20 by ecruz-go          #+#    #+#              #
-#    Updated: 2022/02/23 18:11:24 by ecruz-go         ###   ########.fr        #
+#    Updated: 2022/03/04 13:30:36 by ecruz-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= so_long
 PROG	= so_long
 
-SRCS 	= so_long.c events.c map.c messages.c
+SRCS 	= so_long.c events.c map.c map_utils.c messages.c
 SRCS_F 	= sources/
-OBJS 	= ${SRCS:.c=.o}
+OBJS 	= ${SRCS:.c=.o} ${GNL:.c=.o}
 OBJS_F	= _objFiles/
 MAIN	= sources/so_long.c
 
 HEADER	= -I./includes/so_long.h
+
+# --- LIBFT ---
+GNL = get_next_line.c get_next_line_utils.c
+SRC_GNL = $(addprefix get_next_line/, $(GNL))
 
 # --- LIBFT ---
 LIBFT_A = libft.a
@@ -46,7 +50,7 @@ $(NAME):
 					@echo $(CURSIVE)$(GRAY) "	- Creating object directory..." $(NONE)
 					@mkdir -p $(OBJS_F)
 					@echo $(CURSIVE)$(GRAY) "	- Making object files..." $(NONE)
-					@$(CC) $(CFLAGS) -c $(addprefix $(SRCS_F), $(SRCS))
+					@$(CC) $(CFLAGS) -c $(addprefix $(SRCS_F), $(SRCS)) $(SRC_GNL)
 					@echo $(CURSIVE)$(GRAY) "	- Moving object files to $(OBJS_F)..." $(NONE)	
 					@mv $(OBJS) $(OBJS_F)
 					@echo $(CURSIVE)$(GRAY) "	- Compiling Libft..." $(NONE)
