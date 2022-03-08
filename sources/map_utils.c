@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:19:02 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/04 14:15:44 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:44:11 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * then creates an array with the length enouugth
  * to save all the columns from the maps
  */
-static char	**alloc_columns(char *file)
+char	**alloc_columns(char *file)
 {
 	char	**map;
 	int		lines;
@@ -47,7 +47,7 @@ static char	**alloc_columns(char *file)
 }
 
 /* Initialize the data needed to check if the map is valid */
-static t_mapcheck	mapcheck(char **map)
+t_mapcheck	mapcheck(char **map)
 {
 	t_mapcheck	data;
 
@@ -64,22 +64,41 @@ static t_mapcheck	mapcheck(char **map)
 
 /* Checks to do to each indivial tile of the map.
 * When it founds one, pritns an error and returns FALSE. */
-static int	checks(char **map, t_mapcheck *data)
+int	checks(char **map, t_mapcheck *data)
 {
 	int	x;
 	int	y;
 
 	x = data->point.x;
 	y = data->point.y;
-	if (!valid_char(map[y][x]))
+	if (map[y][x] != '1' && map[y][x] != '0' && map[y][x] != 'C' && map[y][x] != 'E'
+		&& map[y][x] != 'P' && map[y][x] != 'H' && map[y][x] != 'V' && map[y][x] != 'F')
 		return (print_error("invalid map character"));
-	if (!valid_uniquechar(map[y][x], 'P', &data->player))
+	if (map[y][x] == 'P' && data->player == 0)
+		data->player = 1;
+	else if (map[y][x] == 'P' && data->player == 1)
 		return (print_error("must be only one player 'P'"));
 	if (map[y][x] == 'E')
 		data->exit = 1;
-	if (!valid_border(map[y][x], data->point, data->size))
-		return (print_error("map must be surrounded by walls '1'"));
+	if (data->point.y == 0 || data->point.x == 0
+		|| data->point.y == data->size.y - 1 || data->point.x == data->size.x - 1)
+		if (map[y][x] != '1')
+			return (print_error("map must be surrounded by walls '1'"));
 	if (map[y][x] == 'C')
 		data->collectable = 1;
 	return (1);
+}
+
+/* Free the matrix map */
+void	free_map(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }

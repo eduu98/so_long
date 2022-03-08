@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:12:59 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/02/23 17:32:45 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:42:02 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	close_program(t_game *game)
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-        close_program(game);
+		close_program(game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:13:13 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/04 14:19:06 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:41:21 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef enum e_tiletype
 /* Basic struct to store coordinates */
 typedef struct s_vector
 {
-	int	x;
-	int	y;
+	unsigned int	x;
+	unsigned int	y;
 }	t_vector;
 /* Struct for each tile */
 typedef struct s_tile
@@ -67,7 +67,8 @@ typedef struct s_tile
 	struct s_tile	*right;
 }	t_tile;
 /* Principal struct with the main content of the game*/
-typedef struct	s_game {
+typedef struct s_game
+{
 	void		*mlx;
 	void		*win;
 	t_vector	win_size;
@@ -83,16 +84,17 @@ typedef struct s_mapcheck
 }				t_mapcheck;
 
 // Control de las teclas
-int	key_press(int keycode, t_game *vars);
-int	close_program(t_game *vars);
+int			key_press(int keycode, t_game *vars);
+int			close_program(t_game *vars);
 
 // Map Management
-t_tile	**map_init(int argc, char **argv);
-static char	**alloc_columns(char *file);
-static t_mapcheck	mapcheck(char **map);
-static int	checks(char **map, t_mapcheck *data);
+t_tile		**map_init(int argc, char **argv);
+char		**alloc_columns(char *file);
+t_mapcheck	mapcheck(char **map);
+int			checks(char **map, t_mapcheck *data);
+void		free_map(char **matrix);
 // MESSAGES
-void	print_warning(char *message);
-int		print_error(char *message);
-void	*null_error(char *message);
+void		print_warning(char *message);
+int			print_error(char *message);
+void		*null_error(char *message);
 #endif

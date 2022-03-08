@@ -6,20 +6,20 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:12:51 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/01 13:24:24 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:44:57 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdio.h>
 
-int game_init(int argc, char **argv)
+int	game_init(int argc, char **argv)
 {
-	map_init(argc, argv);	
+	map_init(argc, argv);
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 

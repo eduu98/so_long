@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:53:59 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/04 14:13:54 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/08 12:43:34 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ char	**read_map(char *file)
 	return (map);
 }
 
-
 /* Returns TRUE if the map is valid.
 * Printing an error message and returning FALSE if not */
 int	valid_map(char **map)
@@ -91,33 +90,23 @@ int	valid_map(char **map)
 first file of argv. Returns NULL if an error occurs. */
 t_tile	**map_init(int argc, char **argv)
 {
-	char	**map;  
-	// t_game *game
+	char	**map;
 	t_tile	**tilemap;
 
 	tilemap = NULL;
-
 	if (!check_file(argc, argv[1]))
 		return (NULL);
 	map = read_map (argv[1]);
 	if (!map)
 		return (NULL);
-	printf("LEEMOS\n");
-	int i = 0;
-	while (map[i])
-	{
-		ft_putstr_fd(map[i], 1);
-		ft_putchar_fd('\n', 1);
-		i++;
-	}
 	if (valid_map(map) == 0)
 	{
-		// ft_free_chartable(map);
+		free_map(map);
 		return (NULL);
 	}
 	/*
 	tilemap = generate_tilemap(map, game);
-	ft_free_chartable(map);
+	free_map(map);
 	if (!tilemap)
 		return (NULL);
 	*/
