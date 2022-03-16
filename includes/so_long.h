@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:13:13 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/08 12:41:21 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:22:04 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <fcntl.h>
+
+/* Size of sprites */
+# define SPITE_SIZE 64
 
 /* All valid input keys */
 enum e_keycode
@@ -38,8 +41,8 @@ enum e_hookevent{
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
-/* All posibilities for a tile */
-typedef enum e_tiletype
+/* All posibilities for a box */
+typedef enum e_boxtype
 {
 	EMPTY = '0',
 	WALL = '1',
@@ -48,24 +51,24 @@ typedef enum e_tiletype
 	EXIT = 'E',
 	ENEMY = 'M',
 	FOLLOWER = 'F'
-}	t_tiletype;
+}	t_boxtype;
 /* Basic struct to store coordinates */
 typedef struct s_vector
 {
 	unsigned int	x;
 	unsigned int	y;
 }	t_vector;
-/* Struct for each tile */
-typedef struct s_tile
+/* Struct for each box */
+typedef struct s_box
 {
-	t_tiletype		type;
-	t_tiletype		og_type;
+	t_boxtype		type;
+	t_boxtype		og_type;
 	t_vector		position;
-	struct s_tile	*up;
-	struct s_tile	*down;
-	struct s_tile	*left;
-	struct s_tile	*right;
-}	t_tile;
+	struct s_box	*up;
+	struct s_box	*down;
+	struct s_box	*left;
+	struct s_box	*right;
+}	t_box;
 /* Principal struct with the main content of the game*/
 typedef struct s_game
 {
@@ -88,7 +91,7 @@ int			key_press(int keycode, t_game *vars);
 int			close_program(t_game *vars);
 
 // Map Management
-t_tile		**map_init(int argc, char **argv);
+t_box		**map_init(int argc, char **argv);
 char		**alloc_columns(char *file);
 t_mapcheck	mapcheck(char **map);
 int			checks(char **map, t_mapcheck *data);

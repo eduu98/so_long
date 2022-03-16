@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:19:02 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/08 12:44:11 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:23:42 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_mapcheck	mapcheck(char **map)
 	return (data);
 }
 
-/* Checks to do to each indivial tile of the map.
+/* Checks to do to each indivial box of the map.
 * When it founds one, pritns an error and returns FALSE. */
 int	checks(char **map, t_mapcheck *data)
 {

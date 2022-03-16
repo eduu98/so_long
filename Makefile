@@ -6,14 +6,15 @@
 #    By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 12:51:20 by ecruz-go          #+#    #+#              #
-#    Updated: 2022/03/04 13:30:36 by ecruz-go         ###   ########.fr        #
+#    Updated: 2022/03/16 13:25:18 by ecruz-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= so_long
 PROG	= so_long
 
-SRCS 	= so_long.c events.c map.c map_utils.c messages.c
+MAP_SRC	= map_reader.c map_utils.c mpa_generator.c
+SRCS 	= $(MAP_SRC) so_long.c events.c messages.c
 SRCS_F 	= sources/
 OBJS 	= ${SRCS:.c=.o} ${GNL:.c=.o}
 OBJS_F	= _objFiles/

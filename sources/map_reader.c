@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:53:59 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/08 12:43:34 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/16 13:23:52 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "../get_next_line/get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /**
  * Checks if the file is readeable
@@ -86,14 +84,14 @@ int	valid_map(char **map)
 	return (valid);
 }
 
-/* Creates -with malloc- a tilemap acording to the
+/* Creates -with malloc- a boxboard acording to the
 first file of argv. Returns NULL if an error occurs. */
-t_tile	**map_init(int argc, char **argv)
+t_box	**map_init(int argc, char **argv)
 {
 	char	**map;
-	t_tile	**tilemap;
+	t_box	**boxboard;
 
-	tilemap = NULL;
+	boxboard = NULL;
 	if (!check_file(argc, argv[1]))
 		return (NULL);
 	map = read_map (argv[1]);
@@ -104,11 +102,9 @@ t_tile	**map_init(int argc, char **argv)
 		free_map(map);
 		return (NULL);
 	}
-	/*
-	tilemap = generate_tilemap(map, game);
+	boxboard = generate_boxboard(map, game);
 	free_map(map);
-	if (!tilemap)
+	if (!boxboard)
 		return (NULL);
-	*/
-	return (tilemap);
+	return (boxboard);
 }
