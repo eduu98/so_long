@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 12:36:21 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/16 13:49:00 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:14:06 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_box	**alloc_boxboard(char **map)
 	return (boxboard);
 }
 
-/* Returns the tiletype that corresponds to <definer> */
-t_boxtype	define_tiletype(char definer)
+/* Returns the boxtype that corresponds to <definer> */
+t_boxtype	define_boxtype(char definer)
 {
 	if (definer == '1')
 		return (WALL);
@@ -58,8 +58,8 @@ t_boxtype	define_tiletype(char definer)
 	return (EMPTY);
 }
 
-/* Set the size, original type and contiguous of the <x><y> tile of <boxboard> */
-void	setup_tile(t_box **boxboard, int x, int y)
+/* Set the size, original type and contiguous of the <x><y> box of <boxboard> */
+void	setup_box(t_box **boxboard, int x, int y)
 {
 	boxboard[y][x].og_type = boxboard[y][x].type;
 	boxboard[y][x].position.x = x * SPITE_SIZE;
@@ -74,18 +74,18 @@ void	setup_tile(t_box **boxboard, int x, int y)
 }
 
 /* Add info to the game struct if needed */
-void	set_gamevars(t_box *tile, t_game *game, char c)
+void	set_gamevars(t_box *box, t_game *game, char c)
 {
-	if (tile->type == PLAYER)
-		game->player.tile = tile;
-	else if (tile->type == COLLECTABLE)
+	if (box->type == PLAYER)
+		game->player.box = box;
+	else if (box->type == COLLECTABLE)
 		game->collects++;
-	else if (tile->type == ENEMY || tile->type == FOLLOWER)
-		add_enemy(game, c, tile);
+	else if (box->type == ENEMY || box->type == FOLLOWER)
+		add_enemy(game, c, box);
 }
 
 /* Returns a t_box table filled according to <map>,
-each line ends in a tile of type 0,
+each line ends in a box of type 0,
 columns ends in a NULL pointer */
 t_box	**generate_boxboard(char **map, t_game *game)
 {
@@ -102,8 +102,8 @@ t_box	**generate_boxboard(char **map, t_game *game)
 		x = 0;
 		while (map[y][x] != '\0')
 		{
-			boxboard[y][x].type = define_tiletype(map[y][x]);
-			setup_tile(boxboard, x, y);
+			boxboard[y][x].type = define_boxtype(map[y][x]);
+			setup_box(boxboard, x, y);
 			set_gamevars(&boxboard[y][x], game, map[y][x]);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ecruz-go <ecruz-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 11:53:59 by ecruz-go          #+#    #+#             */
-/*   Updated: 2022/03/16 13:23:52 by ecruz-go         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:33:26 by ecruz-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	valid_map(char **map)
 
 /* Creates -with malloc- a boxboard acording to the
 first file of argv. Returns NULL if an error occurs. */
-t_box	**map_init(int argc, char **argv)
+t_box	**map_init(int argc, char **argv, t_game *game)
 {
 	char	**map;
 	t_box	**boxboard;
